@@ -1,0 +1,16 @@
+.custom-hover {
+  padding: 1rem;
+  border-radius: 8px;
+
+  transition: all 0.3s ease;
+}
+
+.custom-hover:hover {
+  background-color: #0089F7;
+  transform: translateY(-5px);
+  color: #fff;
+}
+
+.custom-hover:hover .card-title-hover {
+  color: #fff;
+}

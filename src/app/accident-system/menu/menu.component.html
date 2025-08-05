@@ -1,0 +1,59 @@
+<!--
+<div class="card " style="height: 620px">
+  &lt;!&ndash; Header &ndash;&gt;
+  <div class="card-header card-header-content-sm-between">
+    <h4 class="card-header-title mb-2 mb-sm-0">System Items</h4>
+
+    &lt;!&ndash; Nav &ndash;&gt;
+    <ul class="nav nav-segment nav-fill" id="expensesTab" role="tablist">
+      <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="thisWeek" data-trigger="click" data-action="toggle" role="presentation">
+        <a class="nav-link active" href="javascript:;" data-bs-toggle="tab" aria-selected="true" role="tab">This week</a>
+      </li>
+      <li class="nav-item" data-bs-toggle="chart-bar" data-datasets="lastWeek" data-trigger="click" data-action="toggle" role="presentation">
+        <a class="nav-link" href="javascript:;" data-bs-toggle="tab" aria-selected="false" tabindex="-1" role="tab">Last week</a>
+      </li>
+    </ul>
+    &lt;!&ndash; End Nav &ndash;&gt;
+  </div>
+  &lt;!&ndash; End Header &ndash;&gt;
+
+  &lt;!&ndash; Body &ndash;&gt;
+  <div class="card-body">
+    <div class="row mb-4">
+      <div class="col-sm-auto align-self-sm-end">
+        <div class="row fs-6 text-body">
+          <div class="col-auto">
+            <span class="legend-indicator bg-primary"></span> New
+          </div>
+          <div class="col-auto">
+            <span class="legend-indicator"></span> Overdue
+          </div>
+        </div>
+        &lt;!&ndash; End Row &ndash;&gt;
+      </div>
+
+
+      <div class="card-body">
+        <div class="row">
+          @for(items of menuItems; track items.name){
+
+            <div class="col-4 col-md-4 col-lg-4 text-center mb-1 custom-hover">
+              <a [routerLink]="items.link">
+                <img class="img" [src]="items.icon" style="width: 50px; height: 80px">
+                <p style="color: black">{{items.name}}</p>
+              </a>
+            </div>
+
+          }
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  &lt;!&ndash; End Body &ndash;&gt;
+</div>
+-->
+
+
+

@@ -1,0 +1,47 @@
+<div class="container">
+  <h5 class="mb-3">Add Additional Notes</h5>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div formArrayName="notes">
+      <div
+        *ngFor="let note of notes.controls; let i = index"
+        class="mb-3"
+      >
+        <div class="input-group">
+          <input
+            class="form-control"
+            [formControlName]="i"
+            placeholder="Note {{ i + 1 }}"
+          />
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeNote(i)"
+            *ngIf="notes.length > 1"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <button type="button" class="btn btn-outline-primary mb-4" (click)="addNote()">
+      + Add Another Note
+    </button>
+
+    <div class="mb-4">
+      <label for="additionalInfo" class="form-label">Additional Info</label>
+      <textarea
+        class="form-control"
+        id="additionalInfo"
+        formControlName="additionalInfo"
+        rows="4"
+        placeholder="Enter any further explanation or description..."
+      ></textarea>
+    </div>
+
+    <div class="text-end">
+      <button type="submit" class="btn btn-success">Submit Notes</button>
+    </div>
+  </form>
+</div>

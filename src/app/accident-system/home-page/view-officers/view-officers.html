@@ -1,0 +1,59 @@
+<div class="container py-4">
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="d-flex align-items-center flex-nowrap">
+          <div class="me-3">
+            <img src="fud.png" style="width: 60px; height: 60px;">
+          </div>
+          <div class="mt-2">
+            <h1 class="page-header-title mb-0">Audu Bako College of Agriculture Danbatta</h1>
+            <p style="font-size: 20px" class="  mb-0">Accident System</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 class="mb-3">Officers List</h2>
+
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by name, badge number, station..."
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped align-middle">
+      <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Rank</th>
+        <th>Badge #</th>
+        <th>Station</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let officer of filteredOfficers()">
+        <td>{{ officer.firstName }} {{ officer.lastName }}</td>
+        <td>{{ officer.rank }}</td>
+        <td>{{ officer.badgeNumber }}</td>
+        <td>{{ officer.station }}</td>
+        <td>{{ officer.phone }}</td>
+        <td>{{ officer.email }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteOfficer(officer.id)">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="filteredOfficers().length === 0">
+        <td colspan="7" class="text-center">No officers found.</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

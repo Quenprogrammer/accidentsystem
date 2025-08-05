@@ -1,0 +1,68 @@
+
+
+
+<div class="card " >
+  <!-- Header -->
+  <div class="card-header card-header-content-between">
+    <h4 class="card-header-title">Economic setback</h4>
+
+    <!-- Dropdown -->
+
+    <!-- End Dropdown -->
+  </div>
+  <!-- End Header -->
+
+  <!-- Body -->
+  <div class="card-body">
+    <span class="h1 d-block mb-4">  ₦{{ totalMoneyLost | number:'1.0-0' }} NGN</span>
+
+    <!-- Dynamic Progress Bars for Each State -->
+    <div class="progress rounded-pill mb-2" style="height: 25px;">
+      <div *ngFor="let stat of stateLossStats"
+           [class]="'progress-bar text-dark ' + stat.color"
+           [style.width.%]="stat.percentage"
+           role="progressbar"
+           [attr.aria-valuenow]="stat.percentage"
+           aria-valuemin="0"
+           aria-valuemax="100"
+           [attr.data-bs-toggle]="'tooltip'"
+           [attr.data-bs-placement]="'top'"
+           [attr.aria-label]="stat.state + ': ₦' + (stat.monetaryDeficit | number:'1.0-0')"
+           [attr.data-bs-original-title]="stat.state + ': ' + (stat.percentage | number:'1.1-1') + '%'">
+        {{ stat.state }}
+      </div>
+    </div>
+
+    <!-- Scale Labels -->
+    <div class="d-flex justify-content-between mb-4">
+      <span>0%</span>
+      <span>100%</span>
+    </div>
+
+
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>State</th>
+        <th>Monetary Deficit (₦)</th>
+        <th>Average Per Day (₦)</th>
+        <th>Average Per Month (₦)</th>
+        <th>Percentage of Total (%)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let stat of stateLossStats">
+        <td>     <img class="avatar avatar-sm avatar-circle" [src]="stat.logo"
+                      alt="Image Description">{{ stat.state }}</td>
+        <td>{{ stat.monetaryDeficit | number:'1.0-0' }}</td>
+        <td>{{ stat.averageDay | number:'1.0-0' }}</td>
+        <td>{{ stat.averageMonth | number:'1.0-0' }}</td>
+        <td>{{ stat.percentage | number:'1.1-1' }}%</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!-- End Table -->
+  </div>
+  <!-- End Body -->
+</div>

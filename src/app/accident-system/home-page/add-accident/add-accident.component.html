@@ -1,0 +1,268 @@
+<div class="container-fluid">
+  <div class="page-header d-flex justify-content-center d-block d-sm-none">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <div class="d-flex align-items-center flex-nowrap">
+          <div class="me-3">
+            <img src="FIRS/firs.jpg" style="width: 60px; height: 60px;">
+          </div>
+          <div>
+            <h1 class="page-header-title mb-0">
+              Federal Road Safety Corps (FRSC)
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-header justify-content-center d-none d-sm-flex my-3">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <div class="d-flex align-items-center flex-nowrap">
+          <div class="me-3">
+            <img src="FIRS/firs.jpg" style="width: 100px; height: 100px;">
+          </div>
+          <div>
+            <h1 class="page-header-title mb-0 display-3">
+              Federal Road Safety Corps
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="row">
+  <div class="col-lg-3">
+    <!-- Navbar -->
+    <div class="navbar-expand-lg navbar-vertical mb-3 mb-lg-5">
+      <!-- Navbar Toggle -->
+      <!-- Navbar Toggle -->
+      <div class="">
+        <button type="button" class="navbar-toggler btn btn-white mb-3" data-bs-toggle="collapse" data-bs-target="#navbarVerticalNavMenu" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarVerticalNavMenu">
+                <span class="d-flex justify-content-between align-items-center">
+                  <span class="text-dark">Menu</span>
+
+                  <span class="navbar-toggler-default">
+                    <i class="bi-list"></i>
+                  </span>
+
+                  <span class="navbar-toggler-toggled">
+                    <i class="bi-x"></i>
+                  </span>
+                </span>
+        </button>
+      </div>
+
+      @for (section of accidentUploadSections; track section.label) {
+        <ul class="nav nav-segment nav-fill my-2" id="invoicesStatusTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a style="text-align: start; cursor: pointer" class="nav-link active"  (click)="openModalWith(section.component)">
+              <div class="row">
+                <div class="col-auto">
+                  <img [src]="section.icon" style="width: 50px; height:50px">
+                </div>
+                <div class="col-auto mt-2">
+                  <p style="font-size: 15px">{{ section.label }}</p>
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      }
+
+      <!-- End Navbar Collapse -->
+    </div>
+    <!-- End Navbar -->
+  </div>
+
+  <div class="col-lg-9">
+    <div class="d-grid gap-3 gap-lg-5">
+      <div class="card shadow-none" style="border: none">
+
+        <!-- ✅ Success message -->
+        <div *ngIf="successMessage" class="alert alert-success text-center mt-3">
+          {{ successMessage }}
+        </div>
+
+        <div style="height: 750px; overflow-y: auto">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-3">
+
+            <!-- Buttons -->
+            <div class="d-flex justify-content-between align-items-center mt-4 mb-3">
+              <button type="button" class="btn btn-outline-primary" (click)="addAccident()">+ Add Another Accident</button>
+              <button type="submit" class="btn btn-success">Submit All</button>
+            </div>
+
+            <div formArrayName="accidents">
+              <div *ngFor="let group of accidents.controls; let i = index" [formGroupName]="i" class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">Accident #{{ i + 1 }}</h5>
+                  <button type="button" class="btn btn-sm btn-danger" (click)="removeAccident(i)" *ngIf="accidents.length > 1">Remove</button>
+                </div>
+
+                <div class="card-body">
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Full Name</label>
+                    <div class="col-sm-9">
+                      <div class="input-group">
+                        <input type="text" class="form-control" formControlName="firstName" placeholder="First Name">
+                        <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Phone</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" formControlName="phone" placeholder="Phone Number">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">State</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" formControlName="organization" placeholder="State">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">LGA</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" formControlName="department" placeholder="LGA">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Accident Type</label>
+                    <div class="col-sm-9">
+                      <div class="form-check">
+                        <input type="radio"
+                               class="form-check-input"
+                               [value]="'death'"
+                               [attr.name]="'userAccountTypeRadio' + i"
+                               formControlName="userAccountTypeRadio">
+                        <label class="form-check-label">Death</label>
+                      </div>
+                      <div class="form-check">
+                        <input type="radio"
+                               class="form-check-input"
+                               [value]="'injury'"
+                               [attr.name]="'userAccountTypeRadio' + i"
+                               formControlName="userAccountTypeRadio">
+                        <label class="form-check-label">Injury</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Gender -->
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Gender</label>
+                    <div class="col-sm-9">
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" [value]="'Male'" formControlName="gender">
+                        <label class="form-check-label">Male</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" [value]="'Female'" formControlName="gender">
+                        <label class="form-check-label">Female</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Vehicle Type -->
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Vehicle Type</label>
+                    <div class="col-sm-9">
+                      <select class="form-select" formControlName="vehicle">
+                        <option value="">Select vehicle</option>
+                        <option>Truck</option>
+                        <option>Bike</option>
+                        <option>Bus</option>
+                        <option>Van</option>
+                        <option>Tricycle</option>
+                        <option>Bicycle</option>
+                        <option>Trailer</option>
+                        <option>Construction Vehicle</option>
+                        <option>Emergency Vehicle</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- State -->
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">State</label>
+                    <div class="col-sm-9">
+                      <select class="form-select" formControlName="state">
+                        <option value="">Select state</option>
+                        <option>Kaduna</option>
+                        <option>Kano</option>
+                        <option>Abuja</option>
+                        <option>Jigawa</option>
+                        <option>Yobe</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Money Lost -->
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Money Lost</label>
+                    <div class="col-sm-9">
+                      <input type="number" class="form-control" formControlName="moneyLost" placeholder="Amount lost (₦)">
+                    </div>
+                  </div>
+
+                  <!-- Age Range -->
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Age Range</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" formControlName="ageRange" placeholder="e.g. 18-25, 26-35">
+                    </div>
+                  </div>
+
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Location</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control mb-2" formControlName="city" placeholder="City">
+                      <textarea class="form-control" formControlName="message" rows="3" placeholder="Message"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+<!-- Modal -->
+<div *ngIf="isModal2Open()" class="modal-overlay" style="overflow: hidden">
+  <div class="modal-content shadow-none" style="overflow: hidden">
+
+
+    <div class="modal-body" style="height:400px; overflow-y: scroll; overflow-x: hidden">
+      <div class="row justify-content-between">
+        <div class="col-3"> <a class="js-clipboard btn btn-white btn-sm text-nowrap bg-danger text-white" (click)="closeModal()">
+          <i class="bi-link-45deg me-1"></i>Close
+        </a></div>
+        <div class="col-7">
+
+        </div>
+      </div>
+
+      <ng-container *ngComponentOutlet="selectedComponent()" />
+    </div>
+
+
+
+  </div>
+</div>
+
+

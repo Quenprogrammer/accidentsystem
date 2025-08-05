@@ -1,0 +1,24 @@
+<form [formGroup]="videoForm" (ngSubmit)="uploadVideos()" class="p-4 border rounded">
+  <div formArrayName="videos">
+    <div *ngFor="let group of videos.controls; let i = index" [formGroupName]="i" class="mb-4 border p-3 rounded">
+      <label class="form-label">Video Description {{ i + 1 }}</label>
+      <input type="text" formControlName="description" class="form-control mb-2" placeholder="Enter description" />
+
+      <label class="form-label">Select Video</label>
+      <input type="file" accept="video/*" class="form-control" (change)="onFileChange($event, i)" />
+
+      <button type="button" class="btn btn-danger btn-sm mt-2" (click)="removeVideo(i)" *ngIf="videos.length > 1">
+        Remove
+      </button>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-secondary mb-3" (click)="addVideo()">Add Another Video</button>
+
+  <div class="text-end">
+    <button class="btn btn-primary" [disabled]="isUploading()">Upload Videos</button>
+  </div>
+
+  <div *ngIf="uploadSuccess()" class="alert alert-success mt-3">Videos uploaded successfully.</div>
+  <div *ngIf="uploadError()" class="alert alert-danger mt-3">{{ uploadError() }}</div>
+</form>

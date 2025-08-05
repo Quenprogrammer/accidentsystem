@@ -1,0 +1,86 @@
+
+
+<div class="row  g-1">
+
+  <div class="col-lg-5 mb-3 mb-lg-5">
+    <!-- Card -->
+    <div class="card ">
+      <!-- Header -->
+      <div class="card-header card-header-content-sm-between">
+        <h4 class="card-header-title mb-2 mb-sm-0">System Items</h4>
+
+
+      </div>
+      <!-- End Header -->
+
+      <!-- Body -->
+      <div class="card-body" style="overflow-y:scroll; height: 620px; overflow-x:hidden">
+        <h1 class="card-header-title mb-2 mb-sm-0">Quick Menu</h1>
+        <div class="row mb-4">
+          <div class="col-sm-auto align-self-sm-end">
+            <div class="row fs-6 text-body">
+
+              <div class="col-auto">
+                <span class="legend-indicator"></span> MENU
+              </div>
+            </div>
+            <!-- End Row -->
+          </div>
+
+
+          <div class="card-body">
+            <div class="row">
+              @for(items of menuItems; track items.name){
+
+                <div class="col-4 col-md-4 col-lg-4 text-center mb-1 custom-hover">
+                  <a [routerLink]="items.link">
+                    <img class="img" [src]="items.icon" style="width: 50px; height: 80px">
+                    <p style="color: black">{{items.name}}</p>
+                  </a>
+                </div>
+
+              }
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- End Body -->
+    </div>
+    <!-- End Card -->
+  </div>
+  <div class="col-lg-7 mb-3 mb-lg-0">
+
+    <div class="card " >
+       <div >
+      <div class="card-header card-header-content-sm-between">
+        <h4 class="card-header-title mb-2 mb-sm-0">Accident by state</h4>
+      </div>
+      <div class="card-body p-2" style="overflow-y:scroll; height: 620px; overflow-x:hidden">
+        <div class="row row-cols-1 row-cols-sm-3 ">
+          @for(items of accidentByState;track items.name){
+            <div class="col mb-3 mb-lg-5">
+              <div class="card shadow-none card-sm card-hover-shadow card-header-borderless  text-center">
+                <div class="">
+                  <img class="img img-fluid" [src]="items.icon" alt="Image Description" style="width:200px; height:200px;">
+                  <div class="row text-center mb-3 px-2">
+                    <div class="col-6 text-end"><h3 class="card-title">{{items.name}}</h3></div>
+                    <div class="col-6 text-start">{{items.value}}</div>
+                  </div>
+
+                </div>
+
+              </div>
+              <!-- End Card -->
+            </div>
+          }
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

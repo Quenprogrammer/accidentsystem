@@ -1,0 +1,74 @@
+
+  <div class="card h-100">
+    <!-- Header -->
+    <div class="card-header">
+      <h4 class="card-header-title">Statistics</h4>
+    </div>
+    <!-- End Header -->
+
+    <!-- Body -->
+    <div class="card-body">
+      <ul class="list-unstyled list-py-3 mb-0">
+        <ul class="list-unstyled">
+          @for (item of accidentStats; track item.name) {
+            <li class="mb-3">
+              <div class="d-flex align-items-center">
+                <a class="d-flex align-items-center me-2" href="#">
+                  <div class="flex-shrink-0">
+                    <div class="avatar avatar-sm avatar-soft-primary avatar-circle">
+              <span class="avatar-initials">
+                {{ item.name.charAt(0) }}
+              </span>
+                      <span class="avatar-status avatar-sm-status avatar-status-warning"></span>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <h5 class="text-hover-primary mb-0">{{ item.name }}</h5>
+                    <span class="fs-6 text-body">{{ item.description }}</span>
+                  </div>
+                </a>
+
+                <!-- ✅ Conditionally show only if chartValue exists -->
+                <div class="ms-auto" *ngIf="item.chartValue !== undefined && item.chartValue !== null">
+                  <div class="col-auto position-relative" style="width: 50px; height: 50px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+                      <circle
+                        cx="25"
+                        cy="25"
+                        r="23.5"
+                        stroke="#e7eaf3"
+                        stroke-width="3"
+                        fill="transparent"
+                      ></circle>
+                      <path
+                        fill="transparent"
+                        stroke="#377dff"
+                        stroke-width="3"
+                        [attr.d]="getCirclePath(item.chartValue)"
+                        stroke-linecap="round"
+                      ></path>
+                    </svg>
+                    <div
+                      class="circles-chart-content position-absolute top-50 start-50 translate-middle text-center"
+                      style="font-size: 14px; color: #377dff;"
+                    >
+                      {{ item.chartValue }}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+
+      </ul>
+    </div>
+    <!-- End Body -->
+
+    <!-- Footer -->
+    <a class="card-footer text-center" href="user-profile-connections.html">
+      View all connections <i class="bi-chevron-right"></i>
+    </a>
+    <!-- End Footer -->
+  </div>
+

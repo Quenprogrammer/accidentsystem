@@ -1,0 +1,90 @@
+<form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="vehicles">
+    <div
+      class="card mb-4"
+      *ngFor="let vehicle of vehicles.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <div class="card-body">
+        <h5 class="mb-3">Vehicle #{{ i + 1 }}</h5>
+
+        <div class="row gy-3">
+          <div class="col-md-4">
+            <label class="form-label">Plate Number *</label>
+            <input type="text" class="form-control" formControlName="plateNumber" placeholder="e.g. ABC-123-KD">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Vehicle Type *</label>
+            <input type="text" class="form-control" formControlName="type" placeholder="e.g. Sedan, SUV">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Color</label>
+            <input type="text" class="form-control" formControlName="color" placeholder="e.g. Red">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Manufacturer</label>
+            <input type="text" class="form-control" formControlName="manufacturer" placeholder="e.g. Toyota">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Chassis Number</label>
+            <input type="text" class="form-control" formControlName="chassisNumber">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Engine Number</label>
+            <input type="text" class="form-control" formControlName="engineNumber">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Year of Manufacture</label>
+            <input type="number" class="form-control" formControlName="year" placeholder="e.g. 2018">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Condition</label>
+            <select class="form-select" formControlName="condition">
+              <option value="">Select Condition</option>
+              <option>New</option>
+              <option>Used</option>
+              <option>Damaged</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Owner's Name</label>
+            <input type="text" class="form-control" formControlName="ownerName" placeholder="e.g. Musa Ibrahim">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Owner's Contact</label>
+            <input type="text" class="form-control" formControlName="ownerContact" placeholder="Phone or Email">
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Additional Notes</label>
+            <textarea class="form-control" rows="2" formControlName="description" placeholder="Any notes about the vehicle..."></textarea>
+          </div>
+
+          <div class="col-12 text-end">
+            <button type="button" class="btn btn-danger btn-sm mt-2" (click)="removeVehicle(i)" *ngIf="vehicles.length > 1">
+              Remove Vehicle
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <button type="button" class="btn btn-outline-primary" (click)="addVehicle()">
+      + Add Another Vehicle
+    </button>
+    <button type="submit" class="btn btn-success">
+      Submit
+    </button>
+  </div>
+</form>

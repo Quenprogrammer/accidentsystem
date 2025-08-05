@@ -1,0 +1,76 @@
+<form [formGroup]="suspectForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="suspects">
+    <div class="card mb-4" *ngFor="let suspect of suspects.controls; let i = index" [formGroupName]="i">
+      <div class="card-body">
+        <h5 class="mb-3">Suspect #{{ i + 1 }}</h5>
+
+        <div class="row gy-3">
+          <div class="col-md-6">
+            <label class="form-label">Full Name *</label>
+            <input type="text" class="form-control" formControlName="fullName" placeholder="e.g. John Doe">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" formControlName="gender">
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" formControlName="age" placeholder="e.g. 32">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" formControlName="address" placeholder="e.g. No. 10 Zaria Road">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Contact</label>
+            <input type="text" class="form-control" formControlName="contact" placeholder="Phone or Email">
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label">Description / Notes</label>
+            <textarea class="form-control" rows="2" formControlName="description" placeholder="Behavior, appearance, etc."></textarea>
+          </div>
+        </div>
+
+        <!-- Additional Dynamic Details -->
+        <div class="mt-4">
+          <h6>Additional Details</h6>
+          <div formArrayName="additionalDetails">
+            <div class="row g-3 mb-2" *ngFor="let detail of getAdditionalDetails(i).controls; let j = index" [formGroupName]="j">
+              <div class="col-md-5">
+                <input type="text" class="form-control" formControlName="label" placeholder="Label (e.g. Height)">
+              </div>
+              <div class="col-md-5">
+                <input type="text" class="form-control" formControlName="value" placeholder="Detail (e.g. 5ft 10in)">
+              </div>
+              <div class="col-md-2 text-end">
+                <button type="button" class="btn btn-danger btn-sm" (click)="removeDetail(i, j)" *ngIf="getAdditionalDetails(i).length > 1">Remove</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" class="btn btn-outline-secondary btn-sm mt-2" (click)="addDetail(i)">+ Add Detail</button>
+        </div>
+
+        <div class="text-end mt-3">
+          <button type="button" class="btn btn-danger btn-sm" (click)="removeSuspect(i)" *ngIf="suspects.length > 1">
+            Remove Suspect
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <button type="button" class="btn btn-outline-primary" (click)="addSuspect()">+ Add Another Suspect</button>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </div>
+</form>

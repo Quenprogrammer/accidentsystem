@@ -1,0 +1,43 @@
+<div class="card h-100">
+  <!-- Header --><i class="bi-person-fill me-1"></i>
+  <div class="card-header card-header-content-between">
+    <h4 class="card-header-title">Age range</h4>
+
+  </div>
+  <!-- End Header -->
+
+  <!-- Body -->
+  <div class="card-body card-body-height">
+    <ul class="list-group list-group-flush list-group-no-gutters">
+@for(items of ageRanges; track items.name){
+
+
+      <li class="list-group-item">
+        <div class="d-flex">
+          <div class="flex-shrink-0">
+            <!-- Avatar -->
+            <img class="avatar avatar-sm avatar-circle" [src]="items.icon"
+                 alt="Image Description">
+            <!-- End Avatar -->
+          </div>
+
+          <div class="flex-grow-1 ms-3">
+            <div class="row">
+              <div class="col order-md-1">
+                <h5 class="mb-0">{{items.name}}</h5>
+                <span class="fs-6 text-body">{{items.description}}</span>
+                <span class="fs-6 text-body">{{items.category}}</span>
+              </div>
+
+
+
+            </div>
+            <!-- End Row -->
+          </div>
+        </div>
+      </li>
+}
+    </ul>
+  </div>
+  <!-- End Body -->
+</div>

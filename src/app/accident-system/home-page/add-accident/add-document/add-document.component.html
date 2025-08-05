@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="">
+      <div class="card shadow-none p-4">
+        <h2 class="mb-3 text-center">Document Cloud file upload</h2>
+        <p class="mb-3">You are currently using a temporary trial server. To enable file uploads, please upgrade to a full server plan. At this time, only external servers are supported.</p>
+        <form [formGroup]="fileForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="filename" class="form-label">Filename</label>
+            <input type="text" id="filename" class="form-control" formControlName="filename" />
+          </div>
+
+          <div class="mb-3">
+            <label for="serverFileAddress" class="form-label">Server File Address</label>
+            <input type="text" id="serverFileAddress" class="form-control" formControlName="serverFileAddress" />
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="fileForm.invalid">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

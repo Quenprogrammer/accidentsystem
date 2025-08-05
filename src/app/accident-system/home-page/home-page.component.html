@@ -1,0 +1,103 @@
+<app-password-modal *ngIf="!accessGranted" (unlocked)="onUnlock($event)"></app-password-modal>
+<div *ngIf="accessGranted">
+
+<!--
+<div *ngIf="loading" class="d-flex justify-content-center align-items-center vh-100">
+  <div class="text-center">
+    <img src="FIRS/t10.gif" style="width: 100px; height: 100px">
+
+    <div><h3>Loading Accident System</h3></div>
+  </div>
+</div>
+-->
+
+<main  id="content" role="main" class="main">
+<!-- Content -->
+<div class="content container-fluid">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="d-flex align-items-center flex-nowrap">
+          <div class="me-3">
+            <img src="fud.png" style="width: 60px; height: 60px;">
+          </div>
+          <div class="mt-2">
+            <h1 class="page-header-title mb-0">Audu Bako College of Agriculture Danbatta</h1>
+            <p style="font-size: 20px" class="  mb-0">Accident System</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <app-menu></app-menu>
+
+  <app-stats></app-stats>
+
+  <app-statistics-card></app-statistics-card>
+  <div class="mb-2">
+    <app-accident-by-state [stats]="statistics"></app-accident-by-state>
+  </div>
+
+  <app-accidents></app-accidents>
+
+
+  <div class="row">
+    <div class="col-lg-5 mb-2 ">
+      <app-vehicles [stats]="statistics"></app-vehicles>
+    </div>
+    <div class="col-lg-7 mb-3 mb-lg-5">
+      <app-statistics [stats]="statistics"></app-statistics>
+    </div>
+    <!-- End Col -->
+  </div>
+  <!-- End Row -->
+
+
+
+  <div class="row">
+    <div class="col-lg-7 mb-3 mb-lg-5">
+      <!-- Card -->
+      <div class="card card-body">
+        <!-- Header -->
+        <div class="row col-divider">
+          <div class="col-12 ">
+            <small class="h3">People Involved</small>
+                   </div>
+          <hr>
+          <div class="col-6 text-end">
+            <span class="display-4 text-danger mb-0">{{ statistics.male || 0 }}</span>
+            <span class="d-block">MALES</span>
+          </div>
+
+          <div class="col-6 text-start">
+                  <span class="display-4  text-success mb-0">
+                    <i class="bi-graph-up"></i> {{ statistics.female || 0 }}
+                  </span>
+            <span class="d-block">FEMALES</span>
+          </div>
+        </div>
+
+      </div>
+      <app-economic-setback [stats]="statistics"></app-economic-setback>
+    </div>
+
+    <div class="col-lg-5 mb-3 mb-lg-5">
+      <!-- Card -->
+      <app-age-range></app-age-range>
+      <!-- End Card -->
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+</main>
+</div>

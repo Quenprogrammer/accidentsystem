@@ -1,0 +1,210 @@
+/* Modal overlay (background behind modal) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
+
+/* Modal content (box that holds the description) */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+
+  max-width: 800px; /* Optional: You can set a max width to ensure it doesn't get too large */
+
+ height: 500px; /* Optional: Limit the height to 80% of the viewport */
+  overflow-y: auto; /* Make the content scrollable vertically */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Close button for the modal */
+.close {
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  font-size: 50px;
+  cursor: pointer;
+  color: red;
+  margin-top: 15px;
+}
+
+/* Optional: You can add some styles for the buttons */
+button {
+  cursor: pointer;
+}
+.modal-head{
+  font-weight: bold;
+  text-align: center;
+  font-size: 30px;
+  margin-top: 15px;
+}
+
+.text{
+  font-size: 18px;
+}
+.customIMG{
+  height:100px;
+  width:100px;
+  border-radius: 15px;
+}
+.cardPadding{
+  padding:1px;
+  margin:2px;
+}
+
+.text{
+  font-size:12px;
+  font-weight:bold;
+}
+@media (max-width: 576px) {
+  /* Styles for small screens */
+  .customIMG{
+    height:60px;
+    width:60px;
+    object-fit: cover;
+
+  }
+  .text{
+    font-size:10px;
+    font-weight:bold;
+  }
+}
+
+
+.card-link {
+  display: flex;
+  flex-direction: column; /* Arrange icon and title vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Use the text color of parent */
+  height: 100%; /* Make link take full height of grid item */
+  padding: 10px; /* Add some padding */
+  transition: background-color 0.3s; /* Smooth background change */
+}
+
+.card-link:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+}
+
+.card-icon {
+  width: 70px; /* Set a fixed width for icons */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.card-title {
+  margin-top: 8px; /* Space between icon and title */
+  text-align: center; /* Center the title */
+}
+
+
+
+@media (min-width: 992px) {
+  /*  body{
+      overflow: hidden;
+      position:fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+    }*/
+}
+
+
+.imgSettings{
+  width: 70px;
+  height: auto;
+}
+
+.hover-effect{
+  transition: all 0.3s ease;
+}
+.custom-hover:hover{
+  background-color: #77838f;
+  color:white;
+  border-radius: 10px
+}
+
+
+.card-link {
+  display: flex;
+  flex-direction: column; /* Arrange icon and title vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Use the text color of parent */
+  height: 100%; /* Make link take full height of grid item */
+  padding: 10px; /* Add some padding */
+  transition: background-color 0.3s; /* Smooth background change */
+}
+
+.card-link:hover {
+  background-color: #f0f0f0; /* Change background color on hover */
+}
+
+.card-icon {
+  width: 70px; /* Set a fixed width for icons */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.card-title {
+  margin-top: 8px; /* Space between icon and title */
+  text-align: center; /* Center the title */
+}
+
+
+
+@media (min-width: 992px) {
+  /*  body{
+      overflow: hidden;
+      position:fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+    }*/
+}
+
+
+.imgSettings{
+  width: 70px;
+  height: auto;
+}
+
+.hover-effect{
+  transition: all 0.3s ease;
+}
+.custom-hover:hover{
+  background-color: #77838f;
+  color:white;
+  border-radius: 10px
+}
+body, .image-container {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+}
+
+.responsive-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+

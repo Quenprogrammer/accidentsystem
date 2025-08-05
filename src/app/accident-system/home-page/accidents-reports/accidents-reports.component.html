@@ -1,0 +1,121 @@
+<div class="" style="overflow: hidden">
+<div class="card" style="  width: 100vw; ">
+  <!-- Header -->
+  <div class="card-header card-header-content-between">
+    <h4 class="card-header-title">Recent reviews</h4>
+
+  </div>
+  <!-- End Header -->
+
+  <div class="row">
+    <div class="col-lg-4">
+      <!-- Body -->
+      <div class="card-body bg-light h-100">
+        <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" class="p-4 border rounded">
+
+          <div class="mb-3">
+            <input class="form-control" formControlName="email" type="email" placeholder="Enter email" readonly />
+          </div>
+
+          <div class="mb-3">
+            <input class="form-control" formControlName="phone" type="tel" placeholder="Enter phone" readonly />
+          </div>
+
+          <div formGroupName="location" class="mb-3">
+            <input class="form-control mb-2" formControlName="state" placeholder="Enter state" readonly />
+            <input class="form-control mb-2" formControlName="lga" placeholder="Enter LGA" />
+            <input class="form-control" formControlName="area" placeholder="Enter area" />
+          </div>
+
+          <div class="mb-3">
+            <textarea class="form-control" formControlName="message" rows="4" placeholder="Type your message..."></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Send Message</button>
+        </form>
+
+        <div *ngIf="submitting" class="alert alert-info">Submitting...</div>
+        <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+      </div>
+      <!-- End Body -->
+    </div>
+
+
+    <div class="col-lg-8">
+
+
+      <div *ngIf="(messages$ | async)?.length === 0" class="text-muted">No reports found.</div>
+
+      <div class="card-body card-body-height" style="height: 100%;">
+        <!-- List Comment -->
+        <ul class="list-comment" *ngIf="messages$ | async as messages">
+          <!-- Review -->
+          <li class="list-comment-item" *ngFor="let msg of messages; let i = index">
+            <!-- Media -->
+            <div class="d-flex mb-2">
+              <div class="flex-shrink-0">
+                <!-- Avatar -->
+                <div class="avatar avatar-sm avatar-circle mb-2">
+                  <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
+                </div>
+                <!-- End Avatar -->
+              </div>
+
+              <div class="flex-grow-1 ms-2">
+                <div class="row">
+                  <div class="col">
+                    <h2 class="mb-0">{{ msg.email }}</h2>
+
+
+                    <ul class="list-inline fs-6">
+
+                      <li class="list-inline-item">{{ msg.phone }}</li>
+                    </ul>
+                  </div>
+                  <!-- End Col -->
+
+                  <div class="col-auto">
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                      <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm rounded-circle" id="reviewMoreDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi-three-dots-vertical"></i>
+                      </button>
+
+
+                    </div>
+                    <!-- End Dropdown -->
+                  </div>
+                  <!-- End Col -->
+                </div>
+                <!-- End Row -->
+              </div>
+            </div>
+            <!-- End Media -->
+
+            <h3 class="mb-1">{{ msg.location?.state }}</h3>
+            <h5 class="mb-1">{{ msg.location?.lga }}</h5>
+            <h5 class="mb-1">{{ msg.location?.area }}</h5>
+            <p>{{ msg.message }}</p>
+
+            <a >
+              <h5 class="text-success">Reported at</h5> <h3 class="mb-0">{{ msg.createdAt?.toDate() | date:'short' }}</h3>
+            </a>
+          </li>
+
+          <!-- End Review -->
+        </ul>
+        <!-- End List Comment -->
+      </div>
+      <!-- End Body -->
+    </div>
+  </div>
+  <!-- End Row -->
+
+  <!-- Card Footer -->
+  <a class="card-footer text-center" href="./ecommerce-manage-reviews.html">
+    View all reviews <i class="bi-chevron-right"></i>
+  </a>
+  <!-- End Card Footer -->
+</div>
+</div>

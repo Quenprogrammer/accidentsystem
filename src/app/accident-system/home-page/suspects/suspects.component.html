@@ -1,0 +1,62 @@
+<div class="container-fluid py-4">
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="d-flex align-items-center flex-nowrap">
+          <div class="me-3">
+            <img src="fud.png" style="width: 60px; height: 60px;">
+          </div>
+          <div class="mt-2">
+            <h1 class="page-header-title mb-0">Audu Bako College of Agriculture Danbatta</h1>
+            <p style="font-size: 20px" class="  mb-0">Accident System</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2>Suspect List</h2>
+
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by name, crime type, etc..."
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+
+  <div *ngIf="filteredSuspects().length > 0; else noData">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Address</th>
+        <th>Crime Type</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let suspect of filteredSuspects()">
+        <td>{{ suspect.firstName }} {{ suspect.lastName }}</td>
+        <td>{{ suspect.age }}</td>
+        <td>{{ suspect.gender }}</td>
+        <td>{{ suspect.address }}</td>
+        <td>{{ suspect.crimeType }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteSuspect(suspect.id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noData>
+    <div class="alert alert-info mt-3">
+      No suspects found matching your search.
+    </div>
+  </ng-template>
+</div>
